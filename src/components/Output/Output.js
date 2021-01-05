@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import './Output.css';
 
 const Output = props => {
@@ -7,7 +7,11 @@ const Output = props => {
     }, [])
 
     return (
-        <div>hello</div>
+        <div className="Output">
+            <div className="OutputBox">
+                
+            </div>
+        </div>
     )
 }
 
