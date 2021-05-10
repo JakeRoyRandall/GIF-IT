@@ -1,0 +1,11 @@
+.Loading {
+    width: 422px;
+    height: 242px;
+    border: 4px dashed black;
+    color: black;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

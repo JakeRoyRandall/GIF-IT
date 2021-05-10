@@ -3,6 +3,7 @@ import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg'
 import Shapes from './components/Shapes'
 import Input from './components/Input'
 import Edit from './components/Edit'
+import Loading from './components/Loading'
 import Output from './components/Output'
 import Error from './components/Error'
 import './styles/App.css';
@@ -15,6 +16,7 @@ const App = () => {
     const [video, setVideo] = useState(false)
     const [title, setTitle] = useState(false)
     const [duration, setDuration] = useState(false)
+    const [loading, setLoading] = useState(false)
     const [gif, setGif] = useState(false)
 
     const load = async () => await ffmpeg.load().then(() => setReady(true))
@@ -28,6 +30,7 @@ const App = () => {
 
     const convertToGif = async (start, gifDur) => {
         try {
+            setLoading(true)
             // Write the file to memory (to a file name unlikely to be in memory)
             ffmpeg.FS('writeFile', 'jakeisawesome.mp4', await fetchFile(video))
             // Create a color pallete for each frame of the image
@@ -47,6 +50,7 @@ const App = () => {
             const data = ffmpeg.FS('readFile', `${title}.gif`);
             const url = URL.createObjectURL(new Blob([data.buffer], { type: 'image/gif' }));
             setGif(url)
+            setLoading(false)
         } catch (e) {
             console.log(e.code)
             console.log(e.msg)
@@ -67,7 +71,7 @@ const App = () => {
 
                 {(!video && !error) && <Input passVideo={passVideo} />}
                 
-                {(video && !gif && !error) && 
+                {(video && !gif && !error && !loading) && 
                     <div className="videoContainer">
                         <video 
                             controls className="video"
@@ -77,7 +81,7 @@ const App = () => {
                     </div>}
 
 
-                {(video && !gif && !error) && <Edit
+                {(video && !gif && !error && !loading) && <Edit
                     passVideo={passVideo}
                     convertToGif={convertToGif} 
                     passDuration={passDuration} 
@@ -85,9 +89,10 @@ const App = () => {
                     video={video}
                 />}
 
+                {(loading && !gif) && <Loading />}
                 {(gif && !error) && <Output 
                     removeGif={removeGif}
-                    fname={video.name.slice(0, video.name.indexOf("."))}
+                    fname={title}
                     gif={gif}
                 />}
 
