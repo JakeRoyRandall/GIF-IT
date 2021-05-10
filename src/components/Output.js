@@ -1,15 +1,15 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+import { saveAs } from 'file-saver';
+import '../styles/Output.css';
 
 const Output = props => {
-    
-    useEffect(() => {
-    }, [])
-
     return (
         <div className="Output">
-            <div >
-            <p>Us ethe sliders to select Start Time and Duration</p>
+            <div className="gifContainer">
+                <img className="gif" src={props.gif} alt="completed gif"/>
             </div>
+            <button className="button" onClick={() => props.removeGif()}>GO BACK</button>
+            <button className="button" onClick={() => saveAs(props.gif, props.fname)}>DOWNLOAD</button>
         </div>
     )
 }

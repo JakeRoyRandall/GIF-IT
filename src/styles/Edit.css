@@ -1,0 +1,18 @@
+.Edit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider {
+    width: 400px;
+    margin: 50px 0px 0px 0px;
+}
+
+.Edit h4 {
+    color: #EA3EB0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,32 @@
+/* SHAPES */
+
+.shapes {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+}
+
+.squiggle_blue_full {
+    position: absolute;
+    top: -255px;
+    right: -50px;
+}
+
+.squiggle_purple_full {
+    position: absolute;
+    top: 0px;
+    left: -100px;
+}
+
+.cube_yellow_full {
+    position: absolute;
+    bottom: -80px;
+    left: 105px;
+}
+
+.tube_pink_full {
+    position: absolute;
+    bottom: 55px;
+    right: 0px;
+}

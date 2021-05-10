@@ -1,30 +1,31 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
+import Slider from 'rc-slider';
+import '../styles/Edit.css';
+import '../styles/Slider.css';
+
+
+const { createSliderWithTooltip } = Slider;
+const Range = createSliderWithTooltip(Slider.Range);
 
 const Edit = props => {
     const [start, setStart] = useState(0)
-    const [gifDur, setGifDur] = useState(10)
+    const [gifDur, setGifDur] = useState(6)
 
-    useEffect(() => {setGifDur(props.duration)}, [props.duration])
+    const updateState = (e) => {
+        setStart(e[0])
+        setGifDur(e[1])
+    }
 
     return (
         <div className="Edit">
-            {/* <video controls className="Video" src={props.video}></video> */}
+            <div className="slider">
+                <Range min={0} max={props.duration ? props.duration : 6} defaultValue={[0, 6]} allowCross="false"
+                    step="0.01" onChange={(e) => updateState(e)}/>
+                <h4>Start : {start} seconds &nbsp;&nbsp;&nbsp; Duration: {gifDur} seconds</h4>
+            </div>
             <div>
-                <h4>Trim your video</h4>
-                <p>Us ethe sliders to select Start Time and Duration</p>
-                <h4>Start: {start}</h4>
-                {/*<input  type="range" min="1" max="100" value="1" step=".01" 
-                        className="slider" onChange={e => console.log(e.target.value)}
-                />*/}
-                <input type="number" min="0" max={props.duration - .01} step=".01" value={start} onChange={e => setStart(e.target.value)}/>
-                
-                <h4>Duration: {gifDur}</h4>
-                {/*<input  type="range" min="1" max="100" value="1" step=".01" 
-                        className="slider" onChange={e => console.log(e.target.value)}
-                />*/}
-                <input type="number" min="0.01" max={props.duration} step=".01" value={gifDur} onChange={e => setGifDur(e.target.value)}/>
-
-                <button onClick={() => props.convertToGif(start, gifDur)}>Create Gif</button>
+                <button className="button" onClick={() => props.passVideo(false)}>START OVER</button>
+                <button className="button" onClick={() => props.convertToGif(start, gifDur)}>GIF-IT!</button>
             </div>
         </div>
     )

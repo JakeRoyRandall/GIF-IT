@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
+import uploadArrowWhite from '../images/UploadArrowWhite.png'
+import uploadArrowBlack from '../images/UploadArrowBlack.png'
+import '../styles/Input.css';
 
 const Input = props => {
     const [drag, setDrag] = useState(false)
-    const [video, setVideo] = useState(false)
     
     useEffect(() => {
         window.addEventListener('dragenter', handleDragIn)
@@ -37,7 +39,12 @@ const Input = props => {
 
     return (
         <div className="Input">
-            <input type="file" onChange={e => props.passVideo(e.target.files[0])}/>
+            <input type="file" name="inputfile" id="inputfile" className="inputfile" onChange={e => props.passVideo(e.target.files[0])}/>
+            <label htmlFor="inputfile" className={`${drag? "drag": ""}`}>
+                <img src={`${drag? uploadArrowWhite: uploadArrowBlack}`} alt="Upload Arrow"/><br/>
+                <span className={`topline ${drag? "drag": ""}`}>Drop your video here or&nbsp;<span className="browse">browse</span></span>
+                <span className={`bottomline ${drag? "drag": ""}`}>Please upload a GIF, MP4, or MOV</span>
+            </label>
         </div>
     )
 }
