@@ -1,27 +1,10 @@
-GIF transcoding
+App deployed @ https://gif-it-good.netlify.app
 
-“FFmpeg is the leading multimedia framework, able to decode, encode, transcode, mux, demux, stream, filter and play pretty much anything that humans and machines have created. It supports the most obscure ancient formats up to the cutting edge.”
-
-
-GIPHY uses FFMPEG, so it's good enough for me too! Though I learned that it's not free of bugs or quirks.
+App takes MP4 videos and converts them to gifs switly & locally utilizing ffmpeg. I was inspired by Fireship.io video to utilize the Web Assembly version of FFMPEG and then was able to upgrade the application using the insights from GIPHY who also uses FFMPED (though not WASM to do it locally).
 
 Acknowledgements:
-
-
-https://ffmpeg.org/ffmpeg.html#Main-options
-
-Giphy:
-https://engineering.giphy.com/how-to-make-gifs-with-ffmpeg/
-
-Fireship.io
-https://fireship.io/lessons/wasm-video-to-gif/
-
-
-http://blog.pkh.me/p/21-high-quality-gif-with-ffmpeg.html
-
-Niave implementation:
-ffmpeg -ss 61.0 -t 2.5 -i input.mp4 -f gif output.gif
-
+Fireship.io: https://fireship.io/lessons/wasm-video-to-gif/
+Giphy: https://engineering.giphy.com/how-to-make-gifs-with-ffmpeg/
 
 Q: How long can my gif be?
 A: Pretty dang long. The only limit (beyond) your patience, your browser memory) is Web Assembly. Web Assemply (or WASM for short)currently the caps file inputs to 2 GB, which means uploaded videos can be several minutes long.
